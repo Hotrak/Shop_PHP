@@ -23,8 +23,16 @@ session_start();
     <div class="conteiner">
       <div id="popup">
         <div class="popup_content">
-          <h2>В вашей корзине следующие товары (<?php echo(count($_SESSION['basket']));?> шт.)</h2>
+          <div class="header_panel">
+            <h2>В вашей корзине следующие товары (<?php echo(count($_SESSION['basket']));?> шт.)</h2>
+          <div class="delete_btn" onclick= "delete_all_from_b()">Очистить корзину</div>
+          </div>
           <hr>
+          
+          <?php
+              if(isset($_SESSION['basket'])){
+
+          ?>
           <table class="basket_table">
             <tr>
               <th></th>
@@ -42,8 +50,8 @@ session_start();
                  <img src="<?php echo($data['img']);?>" alt=""
                   height=150px>
               </div> </td>
-              <td width=250px> <a href="#">Lenovo Legion Y530-15ICH 81FV01AMRU</a>
-                <div class="delete_btn">Удалить из корзины</div>
+              <td width=250px> <a href="#"><?php echo($data['name']);?></a>
+                <div class="delete_btn" onclick= "delete_from_b(<?php echo $data['id'] ?>,<?php echo $data['id_type'] ?>)">Удалить из корзины</div>
               </td>
               <td class = "TEST3"> <span class="costt"><?php echo($data['cost']);?></span> </td>
               <td class = "TEST1">
@@ -60,6 +68,15 @@ session_start();
               endforeach;
             ?>
           </table>
+           <?php
+              }else{
+              
+          ?>
+          <div>ПУСТО</div>
+          <?php
+              }
+              
+          ?>
           <!-- <div class="bottom_btns">
             <div class="start_lable">В корзине 6 товаров на сумму 9 082.00 руб.</div>
             <div class="mid_btn">Вернуться к покупкам</div>
@@ -86,9 +103,7 @@ session_start();
     });
     function chenge_count(value,target,obj_price,obj_summ){
       // let obj_count = $('.count'); 
-     
-     
-
+  
       let count = Number(target.innerHTML);
       let max = target.getAttribute('name');
       //console.log(max);
@@ -99,6 +114,35 @@ session_start();
         obj_summ.innerHTML = count*cost;
       } 
     }
+    function delete_from_b(id,id_type){
+      $.ajax({
+      url: 'basket_operation.php',
+      data: {
+        operation: 'delete',
+        id: id,
+        id_type: id_type
+      }, //sort_id=pricea
+      type: 'get',
+      success: function (html) {
+       
+      }
+      });
+      location.reload()
+    }
+    function delete_all_from_b() {
+       $.ajax({
+      url: 'basket_operation.php',
+      data: {
+        operation: 'delete_all'
+      }, //sort_id=pricea
+      type: 'get',
+      success: function (html) {
+       
+      }
+      });
+      location.reload()
+    }
+
   </script>
 </body>
 

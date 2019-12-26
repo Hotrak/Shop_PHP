@@ -12,11 +12,15 @@ if ($data['operation'] == 'add') {
     $summ +=$item['cost'];
   }
   echo(count($_SESSION['basket'])." ".$summ);
-}
-
+}else
 if ($data['operation'] == 'delete') {
 
   $count_b = count($_SESSION['basket']);
+
+  if($count_b == 1){
+    $_SESSION = array();
+    return;
+  }
   for ($i=0; $i < $count_b; $i++) { 
       if($_SESSION['basket'][$i]['id'] == $data['id'] && $_SESSION['basket'][$i]['id_type']  == $data['id_type']){
         unset($_SESSION['basket'][$i]);
@@ -25,8 +29,10 @@ if ($data['operation'] == 'delete') {
 
   
   echo "i delete";
-}
-
+}else
+if ($data['operation'] == 'delete_all') {
+    $_SESSION = array();
+}else
 if ($data['operation'] == 'update') {
  
 }

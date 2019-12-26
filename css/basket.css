@@ -103,7 +103,7 @@ span {
   ;
 }
 
-.basket_table .delete_btn {
+.delete_btn {
   margin-top: 20px;
   width: 180px;
   font-size: 13px;
@@ -125,4 +125,8 @@ span {
   top: 0;
   height: 20px;
   margin: 5px;
+}
+.header_panel{
+  display: flex;
+  justify-content: space-between;
 }
