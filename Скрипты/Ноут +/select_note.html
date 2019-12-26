@@ -1,0 +1,136 @@
+SELECT
+laptop.name as product_name,
+laptop.cost,
+laptop.img,
+id_laptop,
+HDD,
+SSD,
+discrete_graphicss_C,
+optical_drive_C,
+camera_C,
+internal_speaker_C,
+Numpad_C,
+keyboard_illumination_C,
+factory_cyrillic_C,
+touch_pad_C,
+privacy_protection_C,
+NFC_C,
+Bluetooth_C,
+LAN_C,
+VGA_C,
+HDMI_C,
+Audio_outputs_C,
+housing_illumination_C,
+protected_housing_C,
+microphone_C,
+width,
+depth,
+thickness,
+massa,
+loan,
+installment,
+discount,
+laptop.count,
+laptop.watching,
+brand_laptop.name as brandlaptop,
+type_laptop.name as typelaptop,
+appointment_laptop.name as appointmentlaptop,
+product_line_laptop.name as productlinelaptop,
+sceen_deagonal.name as sceendeagonal,
+screen_permission.name as screenpermission,
+screen_frequency.name as screenfrequency,
+screen_technology.name as screentechnology,
+screen_surface.name as screensurface,
+screen_laptop.touch_screen_C,
+screen_laptop.pen_input_C,
+processor_platforma.name as processorplatforma,
+processor_name.name as processorname,
+processor_cores.name as processorcores,
+processor_model.name as processormodel,
+processor_laptop.clock_frequency,
+processor_laptop.turbo_frequency,
+processor_laptop.energy_consumption,
+videocard_model.name as videocardmodel,
+videocard_memory.name as videocardmemory,
+ram_type.name as ramtype,
+ram_frequency.name as ramfrequency,
+ram_amount_memory.name as ramamountmemory,
+ram_max_memory.name as rammaxmemory,
+ram_total_memory.name as ramtotalmemory,
+material_laptop.name as materiallaptop,
+color.name as color,
+operating_system_laptop.name as operatingsystemlaptop,
+accumulator_count.name as accumulatorcount,
+accumulator_tank.name as accumulatortank,
+accumulator_energy_reserve.name as accumulatorenergyreserve,
+date_out.name as dateout,
+count_usb.name as countusb
+FROM laptop
+INNER JOIN brand_laptop
+ON laptop.id_brand = brand_laptop.id_brand_laptop
+INNER JOIN type_laptop
+ON type_laptop.id_type_laptop = laptop.id_type_laptope
+INNER JOIN appointment_laptop
+ON appointment_laptop.id_appointment_laptop = laptop.id_appointment
+INNER JOIN product_line_laptop
+ON product_line_laptop.id_product_line_laptop = laptop.id_product_line
+INNER JOIN screen_laptop
+ON screen_laptop.id_screen_laptop = laptop.id_screen
+INNER JOIN sceen_deagonal
+ON sceen_deagonal.id_sceen_deagonal = screen_laptop.id_diagonal
+INNER JOIN screen_permission
+ON screen_permission.id_permission = screen_laptop.id_permission
+INNER JOIN screen_frequency
+ON screen_frequency.id_screen_frequency = screen_laptop.id_frequency
+INNER JOIN screen_technology
+ON screen_technology.id_screen_technology = screen_laptop.id_screen_technology
+INNER JOIN screen_surface
+ON screen_surface.id_screen_surface = screen_laptop.id_surface
+INNER JOIN processor_laptop
+ON processor_laptop.id_processor = laptop.id_processor
+INNER JOIN processor_platforma
+ON processor_platforma.id_processor_platforma = processor_laptop.id_platforma
+INNER JOIN processor_name
+ON processor_name.id_processor_name = processor_laptop.id_name_processor
+INNER JOIN processor_cores
+ON processor_cores.id_processor_cores = processor_laptop.id_number_cores
+INNER JOIN processor_model
+ON processor_model.id_processor_model = processor_laptop.id_model_processor
+INNER JOIN videocard_laptop
+ON videocard_laptop.id_videocard_laptop = laptop.id_videocard
+INNER JOIN videocard_model
+ON videocard_model.id_videocard_model = videocard_laptop.id_model
+INNER JOIN videocard_memory
+ON videocard_memory.id_videocard_memory = videocard_laptop.id_memory
+INNER JOIN ram_laptop
+ON ram_laptop.id_ram = laptop.id_ram
+INNER JOIN ram_type
+ON ram_type.id_ram_type = ram_laptop.id_type
+INNER JOIN ram_frequency
+ON ram_frequency.id_ram_frequency = ram_laptop.id_frequency
+INNER JOIN ram_amount_memory
+ON ram_amount_memory.id_ram_amount_memory = ram_laptop.id_amount_memory
+INNER JOIN ram_max_memory
+ON ram_max_memory.id_ram_max_memory = ram_laptop.id_max_memory
+INNER JOIN material_laptop
+ON material_laptop.id_material = laptop.id_material
+INNER JOIN ram_total_memory
+ON ram_total_memory.id_ram_total_memory = ram_laptop.id_total_memory_slots
+INNER JOIN color
+ON color.id_color = laptop.id_color
+INNER JOIN operating_system_laptop
+ON operating_system_laptop.id_operating_system = laptop.id_operating_system
+INNER JOIN accumulator_laptop
+ON accumulator_laptop.id_accumulator = laptop.id_accumulator
+INNER JOIN accumulator_count
+ON accumulator_count.id_accumulator_count = accumulator_laptop.id_count
+INNER JOIN accumulator_tank
+ON accumulator_tank.id_accumulator_tank = accumulator_laptop.id_tank
+INNER JOIN accumulator_energy_reserve
+ON accumulator_energy_reserve.id_accumulator_energy_reserve = accumulator_laptop.id_energy_reserve
+INNER JOIN type_tech
+ON type_tech.id_type = laptop.id_typetech
+INNER JOIN date_out
+ON date_out.id_date = laptop.id_date
+INNER JOIN count_usb
+ON count_usb.id_count_USB = laptop.id_count_USB

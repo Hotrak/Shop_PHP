@@ -1,0 +1,117 @@
+.col{
+    height: 565px;
+    width: 380px;
+    background-color: rgb(255, 255, 255);
+    float: left;
+    margin: 1px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    
+}
+.col:hover{
+    /* background: rgb(12, 11, 6); */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    
+}
+.col .midCenter img{
+    height: 200px;
+}
+.col .midCenter{
+    height: 200px;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 25px;
+    color: #3d3d3d;
+
+  
+}
+.midCenter h4{
+    margin-top: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.discount{
+    height: 50px;
+    margin: 20px;
+    display: none;
+    
+}
+.cred_ras{
+    /* margin-top: 20px;
+
+    margin-left:20px;
+    margin-bottom: 20px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+
+}
+.cred_ras img{
+    height: 35px;
+}
+.price_menu{
+    height: 80px;
+    display: flex;
+}
+.cost{
+    width: 60%;
+    background: #3d3d3d;
+    padding: 10px;
+    font-size: 25px;
+}
+.cost{
+    width: 60%;
+    background: #3d3d3d;
+    padding: 10px;
+    padding-left: 15px;
+    font-size: 30px;
+    color: azure;
+}
+.cost sup{
+   
+    font-size: 17px;
+}
+.buy{
+    width: 20%;
+    background: #82aa3a;
+}
+.buy:hover{
+    background: #91bd41;
+}
+.price_menu img{
+    height: 45px;
+}
+.price_menu a{
+    margin: auto;
+}
+.to_basket{
+    width: 20%;
+    background: #e83e38;
+}
+.to_basket:hover{
+    background: #f0312b;
+}
+.bottom_menu{
+    display: flex;
+    height: 65px;
+}
+.bottom_menu a{
+    width: 50%;
+    margin: auto;
+    display: flex;
+}
+.bottom_menu .leftButton{
+    border-right: 1px solid #3d3d3d;
+}
+.bottom_menu .rightButton{
+    border-left: 1px solid #3d3d3d;
+}
+.bottom_menu img{
+    height: 40px;
+    margin: auto;
+}
+.bottom_menu a :hover{
+    height: 45px;
+    
+}

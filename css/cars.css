@@ -1,0 +1,181 @@
+
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+/*reset*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*product info */
+
+.card h1 {
+  color: #ff523f;
+  font-family: "muli";
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 21px;
+  display: inline-block;
+  text-align: left;
+}
+
+.product-name img {
+  margin-left: 90px;
+}
+
+.product-name i {
+  color: #ffffff;
+  transition: 0.3s all ease;
+  margin: 0px 12px;
+}
+
+.product-name img:hover {
+  color: #ff1900;
+  cursor: pointer;
+}
+
+.card h3 {
+  color: #ffffff;
+  font-family: "muli";
+  margin-top: 84px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.card h2 {
+  color: #ffffff;
+  font-family: "muli";
+  margin-top: 10px;
+  font-weight: 800;
+  font-size: 29px;
+}
+
+.card h4 {
+  display: inline-block;
+  color: #ffffff;
+  font-family: "muli";
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.card h4.dis {
+  display: inline-block;
+  color: #ffffff;
+  font-family: "muli";
+  font-weight: 400;
+  font-size: 17px;
+  margin-left: 30px;
+  text-decoration: line-through #ff523f;
+}
+
+.card h4.dis span {
+  text-decoration: line-through #ff523f;
+}
+
+.discount {
+  display: inline-block;
+}
+
+.card ul {
+  list-style-type: none;
+}
+
+.card li {
+  display: inline-block;
+  margin-right: 25px;
+}
+
+.card ul li {
+  color: #ffffff;
+  font-family: "muli";
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+
+.fActions{
+    display: flex;
+    width: 80px;
+    
+}
+.foot {
+  color: #ffffff;
+  font-family: "muli";
+  margin-top: 60px;
+  margin-right: 10px;
+  font-weight: 500;
+  font-size: 11px;
+  transition: 0.3s all ease;
+  height: 40px;
+  
+}
+
+
+
+.foot:hover {
+  color: #f76b39;
+  cursor: pointer;
+}
+
+/*shoe slider indicator*/
+
+
+
+
+
+.left i:hover {
+  cursor: pointer;
+  color: #2a2f40;
+}
+
+/*main card*/
+
+.card {
+  display: flex;
+  align-items: center;
+ 
+  height: 600px;
+  width: 800px;
+  
+  
+}
+
+.card .left {
+  content: "";
+  height: 395px;
+  width: 330px;
+  display: flex;
+  align-items: center;
+  background-color: #ff523f;
+  margin-left: 93px;
+  border-radius: 0% 50% 50% 0%;
+  position: absolute;
+  z-index: 5;
+}
+
+.card .left img {
+  height: 200px;
+  width: 250px;
+}
+.card .left img:hover {
+    
+}
+
+.card .right {
+  content: "";
+  height: 395px;
+  width: 550px;
+  background-color: #3d3c3f;
+  z-index: 3;
+  margin-left: 200px;
+}
+
+.card .product-info {
+  position: absolute;
+  margin-left: 245px;
+  height: 394px;
+  width: 305px;
+  z-index: 10;
+}

@@ -1,0 +1,72 @@
+SELECT
+  keyboard.id_keyboard,
+  keyboard.name,
+  keyboard.cost,
+  keyboard.img,
+  keyboard.illumination_C,
+  keyboard.protection_C,
+  keyboard.usb_port_C,
+  keyboard.additional_button,
+  keyboard.operating_time,
+  keyboard.range,
+  keyboard.wire_length,
+  keyboard.touchpad_C,
+  keyboard.cable_braid_C,
+  keyboard.audio_out_C,
+  keyboard.audio_input_C,
+  keyboard.depth,
+  keyboard.weight,
+  keyboard.height,
+  keyboard.massa,
+  keyboard.loan,
+  keyboard.installment,
+  keyboard.discount,
+  keyboard.count,
+  keyboard.watching,
+
+  appointment_keyboard.name as appointmentkeyboard,
+  brand_keyboard.name as brandkeyboard,
+  connection_keyboard.name as connectionkeyboard,
+  material_surface_keyboard.name as materialsurfacekeyboard,
+  shape_keys_keyboard.name as shapekeyskeyboard,
+  type_keyboard.name as typekeyboard,
+  type_switches_keyboard.name as typeswitcheskeyboard,
+  color.name as colorkeyboard,
+  type_tech.type as typetechkeyboard,
+  type_battery_keyboard.name as typebatterykeyboard,
+  date_out.name as dateoutkeyboard
+
+  FROM keyboard
+
+  left JOIN appointment_keyboard
+    ON appointment_keyboard.id_appointment_keyboard = keyboard.id_appointment
+
+  left JOIN brand_keyboard
+    ON brand_keyboard.id_brand_keyboard = keyboard.id_brand
+
+  left JOIN connection_keyboard
+    ON connection_keyboard.id_connection_keyboard = keyboard.id_connection
+
+  left JOIN material_surface_keyboard
+    ON material_surface_keyboard.id_material_surface_keyboard = keyboard.id_material
+
+  left JOIN shape_keys_keyboard
+    ON shape_keys_keyboard.id_shape_keys_keyboard = keyboard.id_shape_keys
+  
+  left JOIN type_keyboard
+   ON type_keyboard.id_type_keyboard = keyboard.id_type_keyboard
+
+  left JOIN type_switches_keyboard
+    ON type_switches_keyboard.id_type_switches_keyboard = keyboard.id_switches
+  
+    left JOIN color
+    ON color.id_color = keyboard.id_color
+
+  left JOIN type_tech
+    ON type_tech.id_type = keyboard.id_typetech
+
+  left JOIN type_battery_keyboard
+    ON type_battery_keyboard.id_type_battery = keyboard.id_type_battery
+
+  Left JOIN date_out
+    ON date_out.id_date = keyboard.id_date

@@ -1,0 +1,48 @@
+SELECT
+
+  id_mat,
+  mat.name as namemat,
+  deep,
+  weight,
+  height,
+  massa,
+  pillow_C,
+  skirting_C,
+  binding_C,
+  illumination_C,
+  exercise_C,
+  usb_C,
+  gaming_C,
+  date_out.name as datemat,
+  compatibility_mat.name as compatibilitymat,
+  material_surface.name as materialsurface,
+  type_tech.type as typetechmat,
+  color.name as colormat,
+  brand_mat.name as brandmat,
+  installment,
+  loan,
+  discount,
+  cost,
+  img,
+  count,
+  watching
+  
+FROM mat
+
+  INNER JOIN compatibility_mat
+    ON compatibility_mat.id_compatibility_mat = mat.id_compatibility
+
+  INNER JOIN material_surface
+    ON material_surface.id_material_surface = mat.id_material
+
+  INNER JOIN color
+    ON color.id_color = mat.id_color
+   
+  INNER JOIN brand_mat
+    ON brand_mat.id_brand_mat = mat.id_brand
+
+  INNER JOIN type_tech
+    ON type_tech.id_type = mat.id_typetech
+
+    INNER JOIN date_out
+    ON mat.id_date = date_out.id_date

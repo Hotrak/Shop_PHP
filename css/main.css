@@ -1,0 +1,532 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background: rgb(237, 237, 237);
+
+}
+
+.conteiner {
+  width: 1100px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+
+}
+
+.clearfix {
+  content: '';
+  display: table;
+  clear: both;
+  width: 100%;
+
+}
+
+header {
+  background-color: #3d3d3d;
+  border: 2px solid #000000;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+header nav {
+  float: right;
+  margin-left: 0px;
+}
+
+.possition {
+  float: left;
+
+}
+
+a {
+  color: blanchedalmond;
+}
+
+.right-bord {
+  border-right: 2px solid #000000;
+}
+
+.mirror {
+  transform: scale(-1, 1)
+}
+
+.menu {
+  margin-top: 10px;
+}
+
+.logo {
+  float: left;
+  /* width: 150%; */
+}
+
+#myMenu a {
+  float: left;
+  margin-right: 30px;
+  padding: 10px;
+  text-transform: uppercase;
+  color: rgb(41, 41, 41);
+}
+
+#myMenu a:last-child {
+
+  margin-right: 0px;
+
+}
+
+#myMenu a:hover {
+  color: crimson;
+}
+
+.search {
+  width: 100%;
+  display: flex;
+}
+
+.searchTerm {
+  width: 400px;
+  border: 3px solid rgb(255, 63, 63, 1);
+  border-right: none;
+  padding: 5px;
+  height: 25px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus {
+  color: rgb(0, 0, 0);
+
+}
+
+.searchButton {
+
+  width: 40px;
+  height: 40.9px;
+  border: 1px solid rgb(255, 63, 63, 1);
+  background: rgb(255, 63, 63, 1);
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+
+  width: 30%;
+  margin-top: -50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hotMenu {
+  margin-top: -50px;
+  display: flex;
+  margin-right: 10px;
+  justify-content: flex-end;
+}
+.hotMenu img {
+  padding-right: 30px;
+  height: 50px;
+}
+.hotMenu a {
+  padding-right: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hotMenu a:last-of-type {
+  padding-right: 0px;
+}
+.hotMenu a span{
+  position: absolute;
+  top: 0;
+  color: rgb(255, 255, 255);
+  background: #303030;
+  border-radius: 50%;
+  padding: 2px;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  font-size:14px;
+
+}
+/* .hotMenu div span :last-of-type{
+  
+} */
+
+.dws-menu * {
+  margin: 0;
+  padding: 0;
+}
+
+.dws-menu ul,
+.dws-menu ol {
+  list-style: none;
+}
+
+.dws-menu>ul {
+  display: flex;
+  justify-content: center;
+}
+
+.dws-menu>ul li {
+  position: relative;
+  border-right: 1px solid #000;
+}
+
+.dws-menu>ul li:first-child {
+  border-left: 1px solid #000;
+}
+
+.dws-menu>ul li:last-child {
+  border-right: 1px solid #000;
+}
+
+.dws-menu>ul li>a img {
+  position: absolute;
+  top: 18px;
+  left: 12px;
+  font-size: 18px;
+}
+
+.dws-menu>ul li a {
+  display: block;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c9c9c9+0,f6f6f6+2,c4c5c7+98,757577+100;Custom+3 */
+
+  padding: 15px 30px 15px 40px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+li,
+ol,
+p,
+div,
+img,
+a {
+  margin: 0px;
+  padding: 0px;
+}
+
+/*sub menu*/
+.dws-menu li ul {
+  position: absolute;
+  min-width: 180px;
+  display: none;
+}
+
+.dws-menu li>ul li {
+  border: 1px solid #3d3d3d;
+}
+
+.dws-menu li>ul li a {
+  padding: 10px;
+  text-transform: none;
+  background: #ffffff;
+  color: #3d3d3d;
+  text-align: center;
+}
+
+.dws-menu li>ul li ul {
+  position: absolute;
+  right: -150px;
+  top: 0;
+}
+
+.dws-menu li:hover>ul {
+  display: block;
+}
+
+.dws-menu li a:hover {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e0e1e5+0,454547+2,454547+98,e0e1e5+100 */
+  background: rgb(224, 225, 229);
+  /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(224, 225, 229, 1) 0%, rgba(69, 69, 71, 1) 2%, rgba(69, 69, 71, 1) 98%, rgba(224, 225, 229, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(224, 225, 229, 1) 0%, rgba(69, 69, 71, 1) 2%, rgba(69, 69, 71, 1) 98%, rgba(224, 225, 229, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(224, 225, 229, 1) 0%, rgba(69, 69, 71, 1) 2%, rgba(69, 69, 71, 1) 98%, rgba(224, 225, 229, 1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e0e1e5', endColorstr='#e0e1e5', GradientType=0);
+  /* IE6-9 */
+
+  color: #ffffff;
+  box-shadow: 1px 5px 10px -5px black;
+  transition: all 0.3s ease;
+}
+
+
+
+
+
+
+
+.secSlider {
+  margin-top: 80px;
+
+}
+
+.aktii {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+#menuFooter {
+  position: fixed;
+  /* Фиксированное положение */
+  padding: 10px;
+  /* Поля вокруг текста */
+  /* animation: pulse 1s infinite; */
+  z-index: 100;
+  background: #3d3d3d;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0;
+  border-radius: 10px;
+
+}
+
+#menuFooter img {
+  height: 30px;
+}
+
+.counter {
+  position: relative;
+  border-radius: 50%;
+  color: #000;
+  background: rgb(255, 255, 255);
+  height: 30px;
+  width: 30px;
+  vertical-align: bottom;
+  text-align: center;
+
+}
+
+.counter span {
+  position: absolute;
+  top: 20%;
+  left: 36%;
+
+}
+
+#menuFooter div {
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+
+#menuFooter :last-child {
+
+  margin-right: 0px;
+}
+
+#menuFooter div a {
+  display: flex;
+
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c9c9c9+0,f6f6f6+2,c4c5c7+98,757577+100;Custom+3 */
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  background: #303030;
+}
+
+#menuFooter div a p {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 7px;
+  font-size: 15px;
+
+}
+
+
+
+nav * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.horizontal-menu a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.horizontal-menu ul {
+  list-style: none;
+}
+
+
+/******************************
+	  Navigation Menu
+******************************/
+
+.horizontal-menu {
+  background-color: #303030;
+  color: #fff;
+  display: block;
+  height: 50px;
+  margin: 20px auto;
+  max-width: 1100px;
+}
+
+
+/******************************
+					Globals
+******************************/
+
+.horizontal-menu.plain,
+.horizontal-menu.dropdown {
+  display: block;
+}
+
+.horizontal-menu.plain li,
+.horizontal-menu.dropdown li {
+  float: left;
+  height: 100%;
+  width: 16.6666%;
+}
+
+.horizontal-menu.plain li a,
+.horizontal-menu.dropdown li>a {
+  display: block;
+  height: 100%;
+  line-height: 50px;
+  text-align: center;
+  transition: background-position 0.2s ease 0s;
+}
+
+.horizontal-menu.plain li a,
+.horizontal-menu.dropdown li>div>a {
+  transition: background-position 0.1s ease 0s;
+}
+
+.horizontal-menu.plain li:not(.active):hover a,
+.horizontal-menu.dropdown li>div>a:hover {
+  color: #FFF;
+  background-position: 100% 0;
+}
+
+.horizontal-menu.plain li.active a:active,
+.horizontal-menu.dropdown>div:not(.active):hover>a:active {
+  background: #BA3032;
+  color: #FFF;
+}
+
+
+/******************************
+				 Plain Horizontal Menu
+		******************************/
+
+.horizontal-menu.plain li a {
+  background: #303030;
+}
+
+.horizontal-menu.plain li.active a {
+  background: #DB3839;
+  color: #FFF;
+}
+.active_red{
+  background: #ff3f3f;
+}
+
+
+/******************************
+		Horizontal Menu With Dropdowns
+		******************************/
+
+.horizontal-menu.dropdown li,
+.horizontal-menu.dropdown li>a {
+  transition: background-color 0.2s ease;
+}
+
+.horizontal-menu.dropdown li {
+  position: relative;
+}
+
+.horizontal-menu.dropdown li>a {
+  text-transform: uppercase;
+}
+
+.horizontal-menu.dropdown li>div {
+  background: #303030;
+  display: none;
+  min-width: 600%;
+  overflow: hidden;
+  position: absolute;
+  padding: 10px;
+  z-index: 999;
+  /* justify-content: last baseline; */
+
+}
+
+/* .horizontal-menu.dropdown li:not(:first-of-type):not(:last-of-type)>div {
+  left: -100%;
+  border-radius: 0 0 3px 3px;
+} */
+
+
+.horizontal-menu.dropdown li:first-of-type>div {
+  left: 0;
+  border-radius: 0 0 3px 0;
+}
+
+.horizontal-menu.dropdown li:last-of-type>div {
+  right: 0;
+  border-radius: 0 0 0 3px;
+}
+
+.horizontal-menu.dropdown li:hover>div {
+  display: flex;
+}
+
+.horizontal-menu.dropdown li:hover,
+.horizontal-menu.dropdown li:hover>div {
+  background: #3d3d3d;
+}
+
+.horizontal-menu.dropdown li>div>a {
+  background: #2c2d2f linear-gradient(to left, #DB3839 50%, #303030 50%) repeat scroll 0 0 / 200% 100%;
+  border-radius: 2px;
+  display: block;
+  float: left;
+  margin: 2%;
+  padding: 8px 10px;
+  text-align: center;
+  transition: background-position 0.2s ease;
+
+}
+
+.horizontal-menu.dropdown li>div>a>img {
+  height: 130px;
+
+}
+
+
+.horizontal-menu.dropdown li>div>a:hover {
+  background-position: 100% 0;
+  cursor: pointer;
+}
+
+footer {
+  background: #3d3d3d;
+  height: 200px;
+}
