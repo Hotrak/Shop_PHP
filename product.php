@@ -128,6 +128,7 @@
                           $color = "";
                         if($property[0] == 2)
                           $color = "style =' background: #c8c8c8; font-size: 22px;'";
+                        if(isset($good[$property[2]]) || $property[0] == 2){
                         ?>
                         <tr <?php echo $color;?>>
                             <th class="property" <?php echo $color;?>> <?php
@@ -150,14 +151,17 @@
                               else
                               {
                                 $dis = "";
-                                if(isset($property[4]))
-                                  $dis= " (".$property[4].")";
-                                  echo $good[$property[2]].$dis;
+                                if(isset($good[$property[2]])){
+                                  if(isset($property[4]))
+                                    $dis= " (".$property[4].")";
+                                    echo $good[$property[2]].$dis;
+                                }
 
                               }
                                ?></td>
                         </tr>
                         <?php
+                        }
                         endforeach;
                         ?>
                     </table>
