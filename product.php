@@ -79,17 +79,17 @@
                         endforeach;
                          if(!$is_true)
                         //  .$good['id']
-                            echo("open_basket(".$id.",'".$good['name']."',".$good['cost'].",".$good['count'].",'".$obj->{'0'}."','img".$good['id']."',".$id.")");
+                            echo("open_basket(".$id.",'".$good['product_name']."',".$good['cost'].",".$good['count'].",'".$obj->{'0'}."','img12',".$type.",".count($_SESSION['basket']).")");
                           else
                             echo('');
                       }else
                       {
                          if(!$is_true)
-                            echo("open_basket(".$id.",'".$good['name']."',".$good['cost'].",".$good['count'].",'". $obj->{'0'}."','img".$good['id']."',".$id.")");
+                            echo("open_basket(".$id.",'".$good['product_name']."',".$good['cost'].",".$good['count'].",'". $obj->{'0'}."','img12',".$type.",".count($_SESSION['basket']).")");
                           else
                             echo('');
                       }
-                    ?>" > <img id ="<?php echo("img".$good['id'])?>" src="<?php
+                    ?>" > <img id ="img12" src="<?php
                       
                           if(!$is_true)
                             echo('img/basketwhite.svg');
@@ -131,11 +131,7 @@
                         if(isset($good[$property[2]]) || $property[0] == 2){
                         ?>
                         <tr <?php echo $color;?>>
-                            <th class="property" <?php echo $color;?>> <?php
-                           
-                              echo $property[1];
-                              
-                             ?> </th>
+                            <th class="property" <?php echo $color;?>> <?php echo $property[1]; ?> </th>
                             <td>
                               <?php
 

@@ -18,6 +18,7 @@ if($_GET['id']) {
     $obj = json_decode($json);
     $img = $obj->{'0'};
     $is_true = false;
+    if(isset($_SESSION['basket']))
     foreach($_SESSION['basket'] as $item_bas):
       if($item['id']==$item_bas['id'] && $id  == $item_bas['id_type'])
         $is_true = true;
@@ -25,13 +26,13 @@ if($_GET['id']) {
     $basket_img = "";
     $event="";
     if(!$is_true){
-      $event = "open_basket(".$item['id'].",'".$item['name']."',".$item['cost'].",".$item['count'].",'".$obj->{'0'}."','img".$item['id']."',".$id_type.")";
+      $event = "open_basket(".$item['id'].",'".$item['name']."',".$item['cost'].",".$item['count'].",'".$obj->{'0'}."','img".$item['id']."',".$item['id_typetech'].",".count($_SESSION['basket']).")";
       $basket_img = "img/basketwhite.svg";
     } 
     else
       $basket_img = "img/cart.png";
 
-
+      $img_id = 'img'.$item['id'];
   printf('<div class="col">
     <div style="height: 50px;">
       <img class="discount" src="img/cred.svg" alt="">
@@ -60,7 +61,7 @@ if($_GET['id']) {
       </div>
       <div class="to_basket">
         <div style="display: flex;height: 78px;">
-          <a %s href="#"><img src="%s" alt=""></a>
+          <a onclick = "%s" href="#"><img id = "%s" src="%s" alt=""></a>
         </div>
       </div>
     </div>
@@ -69,7 +70,7 @@ if($_GET['id']) {
       <a class="rightButton" href="#"><img src="img/heartgreay.svg" alt=""></a>
 
     </div>
-  </div>',$item['id'],$item['id_typetech'],$img,$item['name'],$item['cost'],$event,$basket_img);
+  </div>',$item['id'],$item['id_typetech'],$img,$item['name'],$item['cost'],$event,$img_id,$basket_img);
   }
   exit();
   

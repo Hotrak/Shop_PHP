@@ -38,6 +38,7 @@
        operation: 'add',
        id: id,
        count: count,
+       count_items: 1,
        img: img,
        cost: cost,
        name: name,
@@ -88,6 +89,21 @@
       $('.count').html(count);
       let cost = Number($('.costt').text());
       $('.summ').html(count * cost);
+      console.log(count);
+      $.ajax({
+        url: 'basket_operation.php',
+        data: {
+          operation: 'update',
+          id: basket_items_id[basket_items_id.length-1]['id'],
+          id_type: basket_items_id[basket_items_id.length - 1]['id_type'],
+          count_items: count
+        }, //sort_id=pricea
+        type: 'get',
+        success: function (html) {
+
+          alert(html);
+        }
+      });
     }
   }
 

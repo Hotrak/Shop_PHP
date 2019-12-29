@@ -21,9 +21,9 @@
     
   $products = getGootsShort($id, $sort);//,"WHERE id_typep = ".$id_type
   
-  //var_dump($_SESSION['basket']);
+  var_dump($_SESSION['basket']);
   // var_dump($products);
-   $_SESSION = array();
+  //  $_SESSION = array();
     // if(isset($_SESSION['basket'])){
     //   //var_dump($_SESSION['basket']);
     //   echo("Карзина worck");
@@ -79,15 +79,6 @@
       console.log(range_counter);
 
     }
-
-    // create_range("#slider-range2", "#slider-time1", "#slider-time2", 0, 1500);
-    // create_range("#slider-range4", "#slider-time3", "#slider-time4", 0, 1500);
-    // create_range("#slider-range6", "#slider-time5", "#slider-time6", 0, 1500);
-    // create_range("#slider-range8", "#slider-time7", "#slider-time8", 0, 1500);
-    // create_range("#slider-range10", "#slider-time9", "#slider-time10", 0, 1500);
-    // create_range("#slider-range12", "#slider-time11", "#slider-time12", 0, 1500);
-    // create_range("#slider-range14", "#slider-time13", "#slider-time14", 0, 1500);
-
 
     function create_range(idslider, point_name1, point_name2, minv, maxv) {
 

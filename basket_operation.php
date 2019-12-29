@@ -34,6 +34,12 @@ if ($data['operation'] == 'delete_all') {
     $_SESSION = array();
 }else
 if ($data['operation'] == 'update') {
+  $count_b = count($_SESSION['basket']);
+  for ($i=0; $i < $count_b; $i++) { 
+    if($_SESSION['basket'][$i]['id'] == $data['id'] && $_SESSION['basket'][$i]['id_type']  == $data['id_type']){
+      $_SESSION['basket'][$i]['count_items'] = $data['count_items'];
+    }
+  }
  
 }
 
