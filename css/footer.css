@@ -1,0 +1,152 @@
+body{
+  margin: 0px;
+}
+
+.footer{
+  background: #434343;
+  margin-top: 200px;
+}
+.f_brand{
+  height: 80px;
+}
+
+.sec1_f {
+  border-bottom: 3px solid #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+
+}
+.sec1_f .social_network{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sec1_f .social_network span {
+  margin: 5px;
+  color: #b9b9b9;
+}
+.sec1_f .social_network img{
+  height: 30px;
+  margin: 5px;
+}
+.footer_titel{
+  color: wheat;
+  text-transform: uppercase;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.sec2_f{
+  border-bottom: 3px solid #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+}
+a{
+  text-decoration: none;
+}
+.sec2_f .product_types {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  
+}
+.sec2_f .product_types a{
+ color: #fff;
+ font-size: 17px;
+
+}
+.sec2_f .product_types a:hover{
+  color: #ff0008;
+
+}
+.sec3_f {
+  border-bottom: 3px solid #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+}
+.sec3_f img {
+  width: 90vw;
+
+}
+
+.sec4_f p{
+  color: #fff;
+  padding: 10px;
+  padding-bottom: 80px;
+}
+
+
+
+
+
+#menu_footer {
+  /* position: fixed; */
+  /* padding: 10px;
+  z-index: 100;
+  background: #3d3d3d;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0;
+  border-radius: 10px; */
+
+}
+#menu_footer {
+  background: #3d3d3d;
+  z-index: 100;
+  display: flex;
+  width:fit-content;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 0;
+  
+
+}
+#menu_footer .item_f {
+  background: #525151;
+  z-index: 100;
+  margin: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+#menu_footer .item_f a{
+ display: flex;
+ align-items: center;
+ color: #fff;
+
+}
+#menu_footer .item_f img {
+  height: 40px;
+  margin-right: 5px;
+
+}
+
+#menu_footer .item_f .count_f {
+  background: #fff;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#menu_footer .item_f .count_f span{
+  color: #000;
+  text-align: center;
+}
+
+.fixed_bottom{
+  position: fixed;
+  bottom: 0;
+}
+
+

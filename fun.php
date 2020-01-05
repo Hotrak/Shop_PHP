@@ -18,6 +18,8 @@ function getMatShort(){
     mat.id_mat as id, 
     mat.name, 
     mat.cost,
+    mat.watching,
+    mat.discount,
     mat.id_typetech,
     mat.id_type,
     mat.count,
@@ -33,6 +35,8 @@ function getHeadPhonesShort(){
     headphones.name,
     headphones.id_typetech,
     headphones.count,
+    headphones.discount,
+    headphones.watching,
     headphones.id_typeheadphones,
     headphones.cost,
     headphones.img
@@ -47,6 +51,8 @@ function getLapTopsShort(){
     laptop.id_typetech,
     laptop.cost,
     laptop.name,
+    laptop.watching,
+    laptop.discount,
     laptop.id_type_laptope,
     laptop.img,
     laptop.count
@@ -61,10 +67,12 @@ function getMouseShort(){
   mouse.name,
   mouse.id_typetech,
   mouse.count,
+  mouse.watching,
+  mouse.discount,
   mouse.id_type_mouse,
   mouse.cost,
   mouse.img
-FROM laptopzone.mouse";
+  FROM laptopzone.mouse";
 
     return $query;
 }
@@ -74,11 +82,13 @@ function getKeyBordShort(){
   keyboard.id_keyboard as id,
   keyboard.name,
   keyboard.cost,
+  keyboard.watching,
+  keyboard.discount,
   keyboard.id_typetech,
   keyboard.id_type_keyboard,
   keyboard.count,
   keyboard.img
-FROM keyboard";
+  FROM keyboard";
 
     return $query;
 }
@@ -624,5 +634,145 @@ function signIn($login,$password){
       return False;
     }
  }
+
+ function checkout_basket($data,$user_id){
+
+  //  $max_grup = select_q_ones("SELECT max(id_grup) FROM order_item");
+  //  $max_grup++;
+  $max_grup=0;
+   for ($i=0; $i < count($data); $i++) { 
+     $id = $data[$i]['id'];
+     $id_type = $data[$i]['id_type'];
+     $cost = $data[$i]['cost'];
+     $count_items = $data[$i]['count_items'];
+     $insert_query = "INSERT INTO laptopzone.order_item (id_grup,id_product,id_type,price,count_items,discount) VALUES ($max_grup,$id,$id_type,$cost,$count_items,0)";
+    select_q_ones($insert_query);
+   
+   }
+    $insert_query = "INSERT INTO laptopzone.order (id_order_item,id_user,status) VALUES ($max_grup,$user_id,0)";
+   select_q_ones($insert_query);
+   
+ }
+
+ function checkout_one_click_order($data){
+      $id = $data['id'];
+     $id_type = $data['id_type'];
+     $price = $data['price'];
+     $count = $data['count'];
+     $phone = $data['phone'];
+     $max_grup = 5;
+     $insert_query = "INSERT INTO laptopzone.order_item (id_grup,id_product,id_type,price,count_items,discount) VALUES ($max_grup,$id,$id_type,$price,$count,0)";
+     select_q_ones($insert_query);
+     $insert_query = "INSERT INTO laptopzone.order (id_order_item,status,phone) VALUES ($max_grup,0,'$phone')";
+   select_q_ones($insert_query);
+   echo var_dump($data);
+ }
+
+ function order($array, $by) {
+    $result = array();
+    foreach ($array as $val) {
+        if (!is_array($val) || !key_exists($by, $val)) {
+            continue;
+        }
+        end($result);
+        $current = current($result);
+        while ($current[$by] > $val[$by]) {
+            $result[key($result)+1] = $current;
+            prev($result);
+            $current = current($result);
+        }
+        $result[key($result)+1] = $val;
+    }
+    return $result;
+}
+
+ function get_discount_prod($limit){
+   $products = array();
+   $product;
+   for ($i=1; $i < 6; $i++) {
+     $result = getGootsShort($i);
+     while($row = $result->fetch_array(MYSQLI_ASSOC))
+      {
+        $products[] = $row;
+      }
+   }
+   if(count($products) > 10){
+     array_splice($products,$limit);
+   }
+   $oredr_pr = order($products,'discount');
+  //  $discount = array();
+  //  foreach ($oredr_pr as $item) {
+  //   $discount[] = $item['discount'];
+  //  }
+   return array_reverse($oredr_pr);
+    
+ }
+ function get_watc_prod($limit){
+   $products = array();
+  //  $product;
+   for ($i=1; $i < 6; $i++) {
+     $result = getGootsShort($i);
+     while($row = $result->fetch_array(MYSQLI_ASSOC))
+      {
+        $products[] = $row;
+      }
+    //  $product = ->fetch_array(MYSQLI_ASSOC);
+    //  //if($product['watching']!= 0)  
+    //  $products[] =  $product;
+   }
+   if(count($products) > 10){
+     array_splice($products,$limit);
+   }
+   $oredr_pr = order($products,'watching');
+  //  $discount = array();
+  //  foreach ($oredr_pr as $item) {
+  //   $discount[] = $item['discount'];
+  //  }
+
+   return $oredr_pr;
+  //  return array_reverse($oredr_pr);
+    
+ }
+
+ function price_format_int($price){
+  $num = explode(".", $price);
+  $num_drob = substr($num[1], 0, 2);
+  return number_format($price, 0, '.', ' ');
+ }
+ function price_format_frac($price){
+  $num = explode(".", $price);
+  $num_drob = substr($num[1], 0, 2);
+  $result ="";
+  if(iconv_strlen(strval($num_drob)) == 1)
+    $result = strval($num_drob)."0";
+else
+    if($num_drob == 0)
+    $result = "00";
+    else
+    $result = strval($num_drob);
+    
+  return $result;
+ }
+  function upp_watching($id,$id_type){
+    $update_query= "";
+    if($id_type == 2)
+      $update_query = "UPDATE laptop SET watching = watching + 1 WHERE id_typetech = ".$id_type." AND id_laptop = ".$id;
+      else if($id_type == 4)
+      $update_query = "UPDATE headfones  SET watching = watching + 1 WHERE id_typetech = ".$id_type." AND id_headphones = ".$id;
+       else if($id_type == 5)
+      $update_query = "UPDATE keyboard  SET watching = watching + 1 WHERE id_typetech = ".$id_type." AND id_keyboard  = ".$id;
+       else if($id_type == 1)
+      $update_query = "UPDATE mat  SET watching = watching + 1 WHERE id_typetech = ".$id_type." AND id_mat   = ".$id;
+       else if($id_type == 3)
+      $update_query = "UPDATE mouse  SET watching = watching + 1 WHERE id_typetech = ".$id_type." AND id_mouse    = ".$id;
+      else
+      return;
+      // return $update_query;
+    select_q_ones($update_query);
+  }
+  //0 На рассмотрении
+ //1 Рассмотрен
+ //2 Отправлен
+ //3 Доставлен
 ?>
 

@@ -9,7 +9,7 @@ $basket_count = count($_SESSION['basket']);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="./css/sign_menu.css" />
-  
+
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
@@ -50,8 +50,10 @@ $basket_count = count($_SESSION['basket']);
               </ul>
             </li>
             <li>
-              <a href="#" id = "input_menu"><img class="mirror" src="img/enter.svg" alt="" height="14px">Вход
-            </a>
+              <a href="#" id="input_menu"><?php if(!isset($_SESSION['user']['login'])){?><img class="mirror" src="img/enter.svg"
+                  alt="" height="14px">Вход<?php } else 
+                  echo $_SESSION['user']['login']?>
+              </a>
           </ul>
         </nav>
       </div>
@@ -63,10 +65,9 @@ $basket_count = count($_SESSION['basket']);
     <div class="menu clearfix">
       <a href="index.php" class="logo"><img src="img/logo.png" alt="" height="100px"></a>
       <nav id="myMenu">
-        <a href="#">Доставка</a>
-        <a href="#">Оплата</a>
-        <a href="#">Беспроблемный возврат</a>
-        <a href="#">Что с моим заказом ?</a>
+        <a href="delivery.php">Доставка</a>
+        <a href="payment.php">Оплата</a>
+        <a href="return.php">Беспроблемный возврат</a>
       </nav>
     </div>
     <div class="wrap">
@@ -142,7 +143,7 @@ $basket_count = count($_SESSION['basket']);
               <img src="img/Horizontal_menu_images/KeyBords/3.png" alt="">
               <p>Стандартные клавиатуры</p>
             </a>
-             <a href="content.php?id=5&id_type=2">
+            <a href="content.php?id=5&id_type=2">
               <img src="img/Horizontal_menu_images/KeyBords/3.png" alt="">
               <p>Офисные</p>
             </a>
@@ -210,38 +211,38 @@ $basket_count = count($_SESSION['basket']);
   <div id="sign_menu">
 
     <div class="container" id="container">
-             <img id="close_sign_menu1" src="img/delete.svg" alt="" height="200px">
-             <img id="close_sign_menu2" src="img/delete.svg" alt="" height="20px">
+      <img id="close_sign_menu1" src="img/delete.svg" alt="" height="200px">
+      <img id="close_sign_menu2" src="img/delete.svg" alt="" height="20px">
 
       <div class="form-container sign-up-container">
-        <form action="#" name = "signUp">
+        <form action="#" name="signUp">
           <h1>Создать Аккаунт</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
             <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
-          <span id = "sign_up_logs"></span>
-          <input name = "email" type="email" placeholder="Email" date= "required"/>
-          <input name = "phone" type="tel" placeholder="Телефон"/>
-          <input name = "password1" type="password" placeholder="Пароль" />
-          <input name = "password2" type="password" placeholder="Пароль" />
-          <button type = "submit">Зарегистрироваться</button>
+          <span id="sign_up_logs"></span>
+          <input name="email" type="email" placeholder="Email" date="required" />
+          <input name="phone" type="tel" placeholder="Телефон" />
+          <input name="password1" type="password" placeholder="Пароль" />
+          <input name="password2" type="password" placeholder="Пароль" />
+          <button type="submit">Зарегистрироваться</button>
         </form>
       </div>
       <div class="form-container sign-in-container">
-        <form action="#" name = "signIn">
+        <form action="#" name="signIn">
           <h1>Вход</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
             <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
-          <span id = "sign_in_logs">DFDSF</span>
-          <input name = "email" type="email" placeholder="Email" />
-          <input name ="password" type="password" placeholder="Пароль" />
+          <span id="sign_in_logs">DFDSF</span>
+          <input name="email" type="email" placeholder="Email" />
+          <input name="password" type="password" placeholder="Пароль" />
           <a href="#" class="forgot-password">Забыли пароль?</a>
-          <button type = "submit">Вход</button>
+          <button type="submit">Вход</button>
         </form>
       </div>
       <div class="overlay-container">
@@ -254,18 +255,18 @@ $basket_count = count($_SESSION['basket']);
           <div class="overlay-panel overlay-right">
             <h1>Добро пожаловать!</h1>
             <p>Введите свои личные данные и начните путешествие с нами</p>
-            <button  class="ghost" id="signUp">Регистрация</button>
+            <button class="ghost" id="signUp">Регистрация</button>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div id="popup_menu">
-    
+
 
   </div>
 
-  
+
   <script src="js/auntification.js"></script>
   <script>
     const signUpButton = document.getElementById('signUp');
@@ -275,9 +276,6 @@ $basket_count = count($_SESSION['basket']);
     signUpButton.addEventListener('click', () => container.classList.add('right-panel-active'));
 
     signInButton.addEventListener('click', () => container.classList.remove('right-panel-active'));
-    
-  
-
   </script>
 </body>
 

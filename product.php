@@ -10,6 +10,7 @@
   
   $id = $_GET['id'];
   $good = get_good($id ,$type);
+  echo upp_watching($id,$type);
   //  echo ($id);
 
 //echo "id: ".$id." type: ".$type
@@ -79,17 +80,17 @@
                         endforeach;
                          if(!$is_true)
                         //  .$good['id']
-                            echo("open_basket(".$id.",'".$good['product_name']."',".$good['cost'].",".$good['count'].",'".$obj->{'0'}."','img12',".$type.",".count($_SESSION['basket']).")");
+                            echo("open_basket(".$id.",'".$good['product_name']."',".$good['cost'].",".$good['count'].",'".$obj->{'0'}."','img1233',".$type.",".count($_SESSION['basket']).")");
                           else
                             echo('');
                       }else
                       {
                          if(!$is_true)
-                            echo("open_basket(".$id.",'".$good['product_name']."',".$good['cost'].",".$good['count'].",'". $obj->{'0'}."','img12',".$type.",".count($_SESSION['basket']).")");
+                            echo("open_basket(".$id.",'".$good['product_name']."',".$good['cost'].",".$good['count'].",'". $obj->{'0'}."','img1233',".$type.",".count($_SESSION['basket']).")");
                           else
                             echo('');
                       }
-                    ?>" > <img id ="img12" src="<?php
+                    ?>" > <img class ="img1233" src="<?php
                       
                           if(!$is_true)
                             echo('img/basketwhite.svg');
@@ -110,14 +111,13 @@
             </div>
         </div>
     </section>
-    <section id="product_propery_items" style="padding-bottom: 1500px;">
+    <section id="product_propery_items" >
         <div class="conteiner">
             <div style="background-color: rgb(255, 255, 255);">
                 <div class="nav_menu">
                     <a href="#">Описание</a>
                     <a href="#">Характеристики</a>
                     <a href="#">Отзывы</a>
-                    
                 </div>
                 <div class="product_propery">
                     <h2>Характеристики</h2>
@@ -152,7 +152,6 @@
                                     $dis= " (".$property[4].")";
                                     echo $good[$property[2]].$dis;
                                 }
-
                               }
                                ?></td>
                         </tr>
@@ -167,13 +166,10 @@
         </div>
     </section>
     <div id="overlay"></div>
-  <div id="popup">
-
-
-  </div>
-    <!-- <?php
-        include_once "header.html"
-    ?> -->
+  <div id="popup"></div>
+   <?php
+        include_once "footer.html"
+    ?>
 
     <script>
 
@@ -192,8 +188,6 @@
                 $('.nav_menu').removeClass("sticky");
             };
         });
-        
-        
 
     </script>
     <script src="js/open_basket.js"> </script>

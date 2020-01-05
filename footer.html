@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/footer.css">
+  <title>Document</title>
+</head>
+
+<body>
+  
+  <div class="conteiner">
+    <div id="menu_footer">
+      <div class="item_f">
+        <a href="#">
+          <img src="img/like.svg" alt="">
+          <span>Избранное</span>
+          <div class="count_f"><span>1</span></div>
+        </a>
+      </div>
+      <div class="item_f">
+        <a href="#">
+          <img src="img/eye.svg" alt="">
+          <span>Вы смотрели</span>
+          <div class="count_f"><span>12</span></div>
+        </a>
+      </div>
+      <div class="item_f">
+        <a href="#">
+          <img src="img/balance.svg" alt="">
+          <span>Сравнить</span>
+          <div class="count_f"><span>1</span></div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="footer">
+      <div class="sec1_f">
+        <a href="index.php">
+          <img class="f_brand" src="img/footer/futter.png" alt="">
+        </a>
+        <div class="social_network">
+          <span>Мы в соцсетях</span>
+          <div class="social_imgs">
+            <a href="#"> <img src="img/footer/Youtube.png" alt=""></a>
+            <a href="#"><img src="img/footer/Facebook.png" alt=""></a>
+            <a href="#"><img src="img/footer/Twitter.png" alt=""></a>
+            <a href="#"><img src="img/footer/Twitch.png" alt=""></a>
+            <a href="#"><img src="img/footer/Instagram.png" alt=""></a>
+          </div>
+        </div>
+      </div>
+      <div class="sec2_f">
+        <span class="footer_titel">Категории товаров</span>
+        <div class="product_types">
+          <a href="#">Ноутбуки</a>
+          <a href="#">Клавиатуры</a>
+          <a href="#">Мышки</a>
+          <a href="#">Коврики</a>
+          <a href="#">Наушники</a>
+        </div>
+
+      </div>
+      <div class="sec3_f">
+        <span class="footer_titel">Принимаем к оплате</span>
+        <img src="img/footer/payment.png" alt="">
+      </div>
+      <div class="sec4_f">
+        <p>220036, г. Минск, пр.Молодежный, 1, 10 эт., к.130<br>
+          Свидетельство о государственной регистрации №1001584 от 01.01.2020
+          <br><br>
+          Дата регистрации интернет-магазина LaptopZone в торговом реестре Республики Беларусь - 05.01.2020
+          <br><br>
+          Режим работы интернет-магазина: с 9.00 до 21.00 ежедневно.<br>
+          Заказы, которые оформлены в нерабочее время, принимаются в работу утром следующего за оформлением дня.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 750) {
+        $('#menu_footer').addClass("fixed_bottom");
+      } else {
+        $('#menu_footer').removeClass("fixed_bottom");
+      };
+    });
+  </script>
+</body>
+
+</html>

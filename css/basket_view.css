@@ -44,7 +44,7 @@ td {
 }
 
 .basket_table a,
-span {
+.basket_table span {
 
   color: #3d3d3d;
   font-size: 22px;
@@ -60,7 +60,7 @@ span {
 
 .basket_table .counter div {
   width: 33.3%;
-
+  
 }
 
 .counter .count_plus {
@@ -164,6 +164,7 @@ span {
   height: 20px;
   margin: 5px;
 }
+
 #overlay {
   position: fixed;
 
@@ -197,4 +198,63 @@ span {
   bottom: 0;
   right: 0;
   border-radius: 10px;
+}
+
+#by_one_click_p {
+  position: fixed;
+  width: 320px;
+  height: 200px;
+  background-color: rgb(255, 255, 255);
+  z-index: 999;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: none;
+
+}
+#by_one_click_p span{
+ font-size: 15px;
+ margin-top: 20px;
+}
+#by_one_click_p .fone_input {
+  margin-top: 10px;
+  width: 270px;
+  height: 30px;
+  padding: 2px;
+}
+#by_one_click_p .count_lable {
+  margin-top: 20px;
+  
+
+}
+#by_one_click_p .count_input {
+  width: 50px;
+  height: 30px;
+  margin-left: 3px;
+  padding: 2px;
+
+}
+#by_one_click_p .order_one_cl_b {
+  padding: 10px;
+  background: #e83e38;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
+  cursor: pointer;
+}
+#by_one_click_p .close_one_click_o {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 15px;
+  margin: 5px;
+  cursor: pointer;
 }

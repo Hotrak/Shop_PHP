@@ -18,10 +18,22 @@
     else if($id == 5)
       $sort = " WHERE id_type_keyboard = ".$id_type;
   }
+
+  $p_name = "";
+    if($id == 2)
+    $p_name = "Ноутбуки";
+    else if($id == 1)
+      $p_name = "Коврики";
+    else if($id == 3)
+      $p_name = "Мышки";
+    else if($id == 4)
+      $p_name = "Наушники";
+    else if($id == 5)
+      $p_name = "Клавиатуры";
     
   $products = getGootsShort($id, $sort);//,"WHERE id_typep = ".$id_type
   
-  var_dump($_SESSION['basket']);
+  // var_dump($_SESSION['basket']);
   // var_dump($products);
   //  $_SESSION = array();
     // if(isset($_SESSION['basket'])){
@@ -56,24 +68,25 @@
   <link rel="stylesheet" type="text/css" media="screen" href="./css/combobox.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="./css/card_2.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="./css/basket_view.css" />
-  
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 
-  
-  
+
+
   <!-- <link rel="stylesheet" type="text/css" media="screen" href="./css/swicher.css" /> -->
   <!-- Range -->
 
   <!-- Range -->
-   <script>
-    
+  <script>
     let sort_q = {};
     let range_counter = 0;
-    function create_new_range(min,max){
+
+    function create_new_range(min, max) {
 
       range_counter++;
-      create_range("#slider-range"+(range_counter+1), "#slider-time"+range_counter, "#slider-time"+(range_counter+1), min, max);
+      create_range("#slider-range" + (range_counter + 1), "#slider-time" + range_counter, "#slider-time" + (
+        range_counter + 1), min, max);
       //console.log(count);
       range_counter++;
       console.log(range_counter);
@@ -115,7 +128,8 @@
           values: [point1.val(), point2.val()]
         })
       }
-      function chenge(){
+
+      function chenge() {
         let name = point1.attr('name');
         sort_q[name] = [];
         sort_q[name]['#1'] = point1.val();
@@ -134,7 +148,7 @@
   <section id="product">
     <div class="conteiner">
       <hr>
-      <h1>Ноутбуки <samp>(<?php echo count($products);?>)</samp> </h1>
+      <h1><? echo $p_name;?></h1>
       <div class="mainContent clearfix">
         <div class="property sort">
           <!-- <div class="all">
@@ -171,13 +185,11 @@
                   //  $count = 0;
                   foreach ($sort_items as $item):?>
                 <label class="container_check_box"><?php echo($item[$property[2]])?>
-                  <input 
-                  <?php
+                  <input <?php
                   if($property[0] == "Тип")
                   if($item['id']== $id_type)
                   echo "checked";
-                  ?>
-                   type="checkbox" name="<?php echo($item['id'])?>">
+                  ?> type="checkbox" name="<?php echo($item['id'])?>">
                   <span class="checkmark"></span>
                 </label>
                 <?php endforeach;
@@ -204,13 +216,8 @@
                   </div>
                 </div>
                 <script>
-                 create_new_range(<?php
-                 $resss = select_q($property[3]);
-                    echo($resss['min']);
-                  ?>, <?php
-                    echo($resss['max']);
-                  ?>);
-                   //create_new_range(0,1000);
+                  create_new_range( <?php $resss = select_q($property[3]); echo($resss['min']); ?> , <?php echo($resss['max']); ?> );
+                  //create_new_range(0,1000);
                 </script>
 
                 <?php //endforeach;
@@ -219,7 +226,7 @@
                 <div class="switch_box">
                   <span>НЕТ</span>
                   <div class="button r" id="button-1">
-                    <input type="checkbox" name = "1" class="checkbox_sw">
+                    <input type="checkbox" name="1" class="checkbox_sw">
                     <div class="knobs"></div>
                     <div class="layer"></div>
                   </div>
@@ -252,8 +259,9 @@
 
             <div class="select-box">
 
-              <label for="select-box1" class="label select-box1"><span class="label-desc" style = "font-size: 17px;">Популярные</span> </label>
-              <select id="select-box1" class="select" value = "Choice 2">
+              <label for="select-box1" class="label select-box1"><span class="label-desc"
+                  style="font-size: 17px;">Популярные</span> </label>
+              <select id="select-box1" class="select" value="Choice 2">
                 <option value="Choice 1">Популярные</option>
                 <option value="Choice 2">Дорогие</option>
                 <option value="Choice 3">Дешёвые</option>
@@ -271,19 +279,29 @@
               foreach ($products as $property):
               ?>
             <div class="col">
-              <div style="height: 50px;">
-                <img class="discount" src="img/cred.svg" alt="">
+              <div class = "discount_p">
+                      <?php
+                  if($property['discount'] != 0){
+
+                ?>
+                <img src="img/lower_cost.svg" alt="">
+                <div class="discount_value"><span>-<?php echo $property['discount']?>%</span></div>
+                  <?php }  ?>
               </div>
 
               <div style="height: 300px; display: flex;">
-                <a href = "product.php?id=<?php echo $property['id'];?>&type=<?php  echo $id; ?>"  class="midCenter">
+                <a href="product.php?id=<?php echo $property['id'];?>&type=<?php  echo $id; ?>" class="midCenter">
                   <!-- img/noteBookTest.png -->
                   <?php //echo("photos/".$property['img']);?>
-                  <img src="<?php
-                  $json = $property['img'];
-                  $obj = json_decode($json);
-                  print $obj->{'0'}; // 12345
-                  ?>" alt="">
+                  <div class="img-wraper">
+                      <img  src="<?php
+                      $json = $property['img'];
+                      $obj = json_decode($json);
+                      print $obj->{'0'}; // 12345
+                      ?>" alt="">
+
+                  </div>
+                 
                   <h4><?php echo($property['name']);?></h4>
                 </a>
               </div>
@@ -292,12 +310,26 @@
                 <img src="img/racr12.png" alt="">
               </div>
               <div class="price_menu">
-                <div class="cost">
-                  <?php echo($property['cost']);?><sup>.00</sup>
+                <div class="cost_block">
+                   <?php
+              if($property['discount'] != 0){
+                $dis_cost =  $property['cost']/100 * $property['discount'];
+                $cost_with_dis =$property['cost'] - $dis_cost;
+              ?>
+              <div class="last_price_p">
+                <span style="font-size: 20px;"><strike><?php echo price_format_int($property['cost'])?></strike>
+                <sup><?php echo price_format_frac($property['cost'])?></sup></span>
+                <div class="dis_cost_p"><span>-<?php echo $dis_cost?></span></div>
+              </div>
+              |&nbsp
+              <span><?php echo price_format_int($cost_with_dis);?><sup><?php echo price_format_frac($cost_with_dis);?></sup></span>
+              <?php }else {?>
+                <span><?php echo price_format_int($property['cost']);?><sup><?php echo price_format_frac($property['cost']);?></sup></span>
+              <?php }?>
                 </div>
                 <div class="buy">
                   <div style="display: flex;height: 78px;">
-                    <a href="product.php"><img src="img/click.svg" alt=""></a>
+                    <a  onclick = "open_one_click_p(<?php echo $property['id']?>,<?php echo $id?>,<?php echo $property['cost']?>)"><img src="img/click.svg" alt=""></a>
                   </div>
                 </div>
                 <div class="to_basket">
@@ -311,19 +343,19 @@
                             $is_true = true;
                         endforeach;
                          if(!$is_true)
-                            echo("open_basket(".$property['id'].",'".$property['name']."',".$property['cost'].",".$property['count'].",'".$obj->{'0'}."','img".$property['id']."',".$id.",".count($_SESSION['basket']).")");
+                            echo("open_basket(".$property['id'].",'".$property['name']."',".$cost_with_dis.",".$property['count'].",'".$obj->{'0'}."','img".$property['id']."',".$id.",".count($_SESSION['basket']).")");
                           else
                             echo('');
                       }else
                       {
                          if(!$is_true)
-                            echo("open_basket(".$property['id'].",'".$property['name']."',".$property['cost'].",".$property['count'].",'". $obj->{'0'}."','img".$property['id']."',".$id.",".count($_SESSION['basket']).")");
+                            echo("open_basket(".$property['id'].",'".$property['name']."',".$cost_with_dis.",".$property['count'].",'". $obj->{'0'}."','img".$property['id']."',".$id.",".count($_SESSION['basket']).")");
                           else
                             echo('');
                       }
                     ?>">
 
-                      <img id ="<?php echo("img".$property['id'])?>" src="<?php
+                      <img class="<?php echo("img".$property['id'])?>" src="<?php
                       
                           if(!$is_true)
                             echo('img/basketwhite.svg');
@@ -368,22 +400,26 @@
     <div class="conteiner">
       <div class="showSortValue">
         <img src="img/delete.svg" alt="" class="closeShowSort">
-        <div class="showSortValueButton" name = "<?php echo $id?>"><span>Показать</span></div>
+        <div class="showSortValueButton" name="<?php echo $id?>"><span>Показать</span></div>
       </div>
 
-      <?php
-        include_once "bottomMenu.php"
-    ?>
+     
   </section>
   <div id="overlay"></div>
   <div id="popup">
 
 
   </div>
+  <div id="by_one_click_p">
+   
+  </div>
 
-  <section style="margin-top: 1000px;">
+   <?php
+        include_once "footer.html"
+    ?>
+  <!-- <section style="margin-top: 1000px;">
 
-  </section>
+  </section> -->
 
   <script src="js/contentLoader.js"></script>
   <script src="js/content.js"></script>

@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+ require_once "fun.php";
+// var_dump($_SESSION['user'])
+echo get_watc_prod(10);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,10 +14,12 @@
   <link rel="stylesheet" type="text/css" media="screen" href="./css/slider.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="./css/carousel.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="./css/owelCor/owl.carousel.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="./css/basket_view.css" />
   <!-- <link rel="stylesheet" type="text/css" media="screen" href="./css/owelCor/owl.theme.default.min.css" /> -->
   <!-- <link rel="stylesheet" type="text/css" media="screen" href="./css/cars.css" /> -->
-    <link rel="stylesheet" type="text/css" media="screen" href="./css/card_2.css" />
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="./css/card_2.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="./css/card_3.css" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <!-- <link rel="import" href="header.html"> -->
   <title>Document</title>
 
@@ -62,281 +68,97 @@
   <section class="secStocks">
     <div class="conteiner">
       <img class="aktii" src="img/aktii.png" alt="">
-      <div class="carousel-wrap">
-        <div class="owl-carousel">
-          <?php
-              require_once "fun.php";
-              $products = getGootsShort(2);
-              // $product_property = get_property($id);
-              foreach ($products as $property):
+      <div class="owl-carousel owl-theme">
+        <?php
+                  $products = get_discount_prod(10);
+                  foreach ($products as $property):
+                    $id_type = $property['id_typetech'];
+                  ?>
+        <div class="product-item">
+          <div class="discount_p">
+            <?php
+              if($property['discount'] != 0){
+
+            ?>
+            <img src="img/lower_cost.svg" alt="">
+            <div class="discount_value"><span>-<?php echo $property['discount']?>%</span></div>
+              <?php }  ?>
+          </div>
+          <a href="product.php?id=<?php echo $property['id'];?>&type=<?php  echo $id_type; ?>" class="img_name_p">
+          <div class="img-wraper">
+      <img class = "product_img" src="<?php
+                      $json = $property['img'];
+                      $obj = json_decode($json);
+                      print $obj->{'0'}; // 12345
+                      ?>" alt="">
+          </div>
+           
+            <span><?php echo($property['name']);?></span>
+          </a>
+          <div class="cred_rac_p">
+            <img src="img/cred.svg" alt="">
+            <img src="img/racr12.png" alt="">
+          </div>
+          <div class="nav_panal">
+            <div class="cost_block">
+              <?php
+              if($property['discount'] != 0){
+                $dis_cost =  $property['cost']/100 * $property['discount'];
+                $cost_with_dis =$property['cost'] - $dis_cost;
               ?>
-          <div class="item">
-            <div class="col" style = "height: 590px;width: 355px;">
-              <div style="height: 50px;">
-                <img class="discount" src="img/cred.svg" alt="">
+              <div class="last_price_p">
+                <span style="font-size: 20px;"><strike><?php echo price_format_int($property['cost'])?></strike>
+                <sup><?php echo price_format_frac($property['cost'])?></sup></span>
+                <div class="dis_cost_p"><span>-<?php echo $dis_cost?></span></div>
               </div>
-
-              <div style="height: 300px; display: flex; ">
-                <a href="product.php?id=<?php echo $property['id'];?>&type=<?php  echo $id; ?>" class="midCenter" >
-                  <!-- img/noteBookTest.png -->
-                  <?php //echo("photos/".$property['img']);?>
-                  <div>
-                    <img style = "height: auto;width: 200px;" src="<?php
-                  $json = $property['img'];
-                  $obj = json_decode($json);
-                  print $obj->{'0'}; // 12345
-                  ?>" alt="">
-                  <h4><?php echo($property['name']);?></h4>
-                  </div>
-                </a>
-              </div>
-              <div class="cred_ras" style = "margin-left:-75px;">
-                <img src="img/cred.svg" alt="">
-                <img src="img/racr12.png" alt="">
-              </div>
-              <div class="price_menu">
-                <div class="cost">
-                  <?php echo($property['cost']);?><sup>.00</sup>
-                </div>
-                <div class="buy">
-                  <div style="display: flex;height: 78px;">
-                    <a href="product.php"><img src="img/click.svg" alt=""></a>
-                  </div>
-                </div>
-                <div class="to_basket">
-                  <div style="display: flex;height: 78px;">
-                    <a onclick="<?php
-                    if(isset($_SESSION['basket'])){
-                       $is_true = false;
-                        foreach($_SESSION['basket'] as $item):
-                         
-                          if($property['id']==$item['id'])
-                            $is_true = true;
-                        endforeach;
-                         if(!$is_true)
-                            echo("open_basket(".$property['id'].",'".$property['name']."',".$property['cost'].",".$property['count'].",'".$obj->{'0'}."','img".$property['id']."')");
-                          else
-                            echo('');
-                      }else
-                      {
-                         if(!$is_true)
-                            echo("open_basket(".$property['id'].",'".$property['name']."',".$property['cost'].",".$property['count'].",'". $obj->{'0'}."','img".$property['id']."')");
-                          else
-                            echo('');
-                      }
-                    ?>">
-
-                      <img id="<?php echo("img".$property['id'])?>" src="<?php
-                      
-                          if(!$is_true)
-                            echo('img/basketwhite.svg');
-                          else
-                            echo('img/cart.png');
-                      ?>" alt=""></a>
-                  </div>
-                </div>
-              </div>
-              <div class="bottom_menu">
-                <a class="leftButton" href="#"><img src="img/balancegreay.svg" alt=""></a>
-                <a class="rightButton" href="#"><img src="img/heartgreay.svg" alt=""></a>
-
-              </div>
+              |&nbsp
+              <span><?php echo price_format_int($cost_with_dis);?><sup>.<?php echo price_format_frac($cost_with_dis);?></sup></span>
+              <?php }else {?>
+                <span><?php echo price_format_int($property['cost']);?><sup>.<?php echo price_format_frac($property['cost']);?></sup></span>
+              <?php }?>
             </div>
+            <div class="one_click_b_p"
+              onclick="open_one_click_p(<?php echo $property['id']?>,<?php echo $id_type?>,<?php echo $property['cost']?>)">
+              <img src="img/click.svg" alt=""></div>
+            <div class="to_bascket_b_p" onclick="<?php
+                        if(isset($_SESSION['basket'])){
+                           $is_true = false;
+                            foreach($_SESSION['basket'] as $item):
+                             
+                              if($property['id'] == $item['id']&& $item['id_type'] == $id_type)
+                                $is_true = true;
+                            endforeach;
+                             if(!$is_true)
+                                echo("open_basket(".$property['id'].",'".$property['name']."',".$cost_with_dis.",".$property['count'].",'".$obj->{'0'}."','img".$property['id'].$id_type."',".$id_type.",".count($_SESSION['basket']).")");
+                              else
+                                echo('');
+                          }else
+                          {
+                             if(!$is_true)
+                                echo("open_basket(".$property['id'].",'".$property['name']."',".$cost_with_dis.",".$property['count'].",'". $obj->{'0'}."','img".$property['id'].$id_type."',".$id_type.",".count($_SESSION['basket']).")");
+                              else
+                                echo('');
+                          }
+                        ?>"><img class="<?php echo("img".$property['id'].$id_type)?>" src="<?php
+                          
+                              if(!$is_true)
+                                echo('img/basketwhite.svg');
+                              else
+                                echo('img/cart.png');
+                          ?>" alt=""></div>
           </div>
-          <?php
-              endforeach;
-              ?>
-
-
-          <!-- <div class="item">
-
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>MSI</h1>
-
-                  </div>
-                  <div class="details">
-                    <h3>Игровой ноутбук</h3>
-                    <h2>Lenovo IdeaPad 710s</h2>
-                    <h4>150 руб.</h4>
-                    <h4 class="dis"></span>200 руб.</h4>
-                  </div>
-                  <div class="fActions">
-                    <img class="foot" src="img/like.svg" alt="">
-                    <img class="foot" src="img/basket.svg" alt="">
-                    <img class="foot" src="img/balance.svg" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="bottom_panal_p">
+            <div><img src="img/balancegreay.svg" alt=""></div>
+            <div><img src="img/heartgreay.svg" alt=""></div>
           </div>
-          <div class="item">
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>ASUS</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="item">
-
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>MSI</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
-            </div>
-
-
-
-
-
-          </div>
-          <div class="item">
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>ASUS</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="item">
-
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>MSI</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
-            </div>
-
-
-
-
-
-          </div>
-          <div class="item">
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>ASUS</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
-            </div>
-
-          </div> -->
         </div>
+        <?php
+                  endforeach;
+                  ?>
       </div>
     </div>
-
-
   </section>
+
   <section class="secSlider">
     <div class="conteiner">
       <div class="slideshow-container">
@@ -373,248 +195,120 @@
   <section class="secRecomend">
     <div class="conteiner">
       <img class="aktii" src="img/recomend.png" alt="">
-      <div class="carousel-wrap">
-        <div class="owl-carousel">
-          <div class="item">
+      <div class="owl-carousel owl-theme">
+        <?php
+                 
+                  $products = get_watc_prod(10);
+                  foreach ($products as $property):
+                    $id_type = $property['id_typetech'];
+                  ?>
+          <div class="product-item">
+          <div class="discount_p">
+            <?php
+              if($property['discount'] != 0){
 
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>MSI</h1>
-
-                  </div>
-                  <div class="details">
-                    <h3>Игровой ноутбук</h3>
-                    <h2>Lenovo IdeaPad 710s</h2>
-                    <h4>150 руб.</h4>
-                    <h4 class="dis"></span>200 руб.</h4>
-                  </div>
-                  <div class="fActions">
-                    <img class="foot" src="img/like.svg" alt="">
-                    <img class="foot" src="img/basket.svg" alt="">
-                    <img class="foot" src="img/balance.svg" alt="">
-                  </div>
-
-
-                  <!-- <span class="foot">Buy Now</span>
-                                        <span class="foot">Add TO Cart</span>
-                                        <span class="foot">Add TO Cart</span> -->
-                </div>
-              </div>
-            </div>
-
-
+            ?>
+            <img src="img/lower_cost.svg" alt="">
+            <div class="discount_value"><span>-<?php echo $property['discount']?>%</span></div>
+              <?php }  ?>
           </div>
-          <div class="item">
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>ASUS</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
-            </div>
-
+          <a href="product.php?id=<?php echo $property['id'];?>&type=<?php  echo $id_type; ?>" class="img_name_p">
+          <div class="img-wraper">
+ <img class = "product_img" src="<?php
+                      $json = $property['img'];
+                      $obj = json_decode($json);
+                      print $obj->{'0'}; // 12345
+                      ?>" alt="">
           </div>
-          <div class="item">
-
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>MSI</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
-            </div>
-
-
-
-
-
+           
+            <span><?php echo($property['name']);?></span>
+          </a>
+          <div class="cred_rac_p">
+            <img src="img/cred.svg" alt="">
+            <img src="img/racr12.png" alt="">
           </div>
-          <div class="item">
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
+          <div class="nav_panal">
+            <div class="cost_block">
+              <?php
+              if($property['discount'] != 0){
+                $dis_cost =  $property['cost']/100 * $property['discount'];
+                $cost_with_dis =$property['cost'] - $dis_cost;
+              ?>
+              <div class="last_price_p">
+                <span style="font-size: 20px;"><strike><?php echo price_format_int($property['cost'])?></strike>
+                <sup><?php echo price_format_frac($property['cost'])?></sup></span>
+                <div class="dis_cost_p"><span>-<?php echo $dis_cost?></span></div>
               </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>ASUS</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
+              |&nbsp
+              <span><?php echo price_format_int($cost_with_dis);?><sup>.<?php echo price_format_frac($cost_with_dis);?></sup></span>
+              <?php }else {?>
+                <span><?php echo price_format_int($property['cost']);?><sup>.<?php echo price_format_frac($property['cost']);?></sup></span>
+              <?php }?>
             </div>
-
+            <div class="one_click_b_p"
+              onclick="open_one_click_p(<?php echo $property['id']?>,<?php echo $id_type?>,<?php echo $property['cost']?>)">
+              <img src="img/click.svg" alt=""></div>
+            <div class="to_bascket_b_p" onclick="<?php
+                        if(isset($_SESSION['basket'])){
+                           $is_true = false;
+                            foreach($_SESSION['basket'] as $item):
+                             
+                              if($property['id'] == $item['id']&& $item['id_type'] == $id_type)
+                                $is_true = true;
+                            endforeach;
+                             if(!$is_true)
+                                echo("open_basket(".$property['id'].",'".$property['name']."',".$cost_with_dis.",".$property['count'].",'".$obj->{'0'}."','img".$property['id'].$id_type."',".$id_type.",".count($_SESSION['basket']).")");
+                              else
+                                echo('');
+                          }else
+                          {
+                             if(!$is_true)
+                                echo("open_basket(".$property['id'].",'".$property['name']."',".$cost_with_dis.",".$property['count'].",'". $obj->{'0'}."','img".$property['id'].$id_type."',".$id_type.",".count($_SESSION['basket']).")");
+                              else
+                                echo('');
+                          }
+                        ?>"><img class="<?php echo("img".$property['id'].$id_type)?>" src="<?php
+                          
+                              if(!$is_true)
+                                echo('img/basketwhite.svg');
+                              else
+                                echo('img/cart.png');
+                          ?>" alt=""></div>
           </div>
-          <div class="item">
-
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>MSI</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
-            </div>
-
-
-
-
-
+          <div class="bottom_panal_p">
+            <div><img src="img/balancegreay.svg" alt=""></div>
+            <div><img src="img/heartgreay.svg" alt=""></div>
           </div>
-          <div class="item">
-            <div class="card">
-              <div class="left">
-                <img src="img/noteBookTest.png" alt="shoe">
-
-              </div>
-              <div class="right">
-                <div class="product-info">
-                  <div class="product-name">
-                    <h1>ASUS</h1>
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                    <img src="img/area.svg" height="10px" alt="">
-                  </div>
-                  <div class="details">
-                    <h3>Winter Collection</h3>
-                    <h2>Men Black Sneakers</h2>
-                    <h4><span class="fa fa-dollar"></span>150</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                  </div>
-
-
-                  <span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>
-                  <span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <!-- <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div>
-                        <div class="item"><img src="http://placehold.it/150x150"></div> -->
-          <!-- </div> -->
-          <!-- </div> -->
         </div>
+        <?php
+                  endforeach;
+                  ?>
       </div>
+    </div>
     </div>
 
   </section>
   <section>
-    <div class="conteiner">
-      <div id="menuFooter">
-        <div>
-          <a href="#"><img src="img/balance.svg" alt="">
-            <p>Сравнить</p>
-            <div class="counter"><span>1</span></div>
-          </a>
-        </div>
-        <div>
-          <a href="#"><img src="img/balance.svg" alt="">
-            <p>Избранное</p>
-            <div class="counter"><span>1</span></div>
-          </a>
-        </div>
-        <div>
-          <a href="#"><img src="img/balance.svg" alt="">
-            <p>Вы смотрели</p>
-            <div class="counter"><span>1</span></div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <footer></footer>
+  </section>
+  <div id="overlay"></div>
+  <div id="popup">
+
+
+  </div>
+  <div id="by_one_click_p">
+
+  </div>
+  <?php
+        include_once "footer.html"
+    ?>
 
   <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
   <script src="js/headhesive.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/carousel.js"></script>
+  <script src="js/open_basket.js"></script>
 </body>
 
 </html>

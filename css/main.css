@@ -272,13 +272,7 @@ a {
 }
 
 
-
-
-
-
-
 .secSlider {
-  margin-top: 80px;
 
 }
 
@@ -288,73 +282,6 @@ a {
   width: 100%;
 }
 
-#menuFooter {
-  position: fixed;
-  /* Фиксированное положение */
-  padding: 10px;
-  /* Поля вокруг текста */
-  /* animation: pulse 1s infinite; */
-  z-index: 100;
-  background: #3d3d3d;
-  margin-left: auto;
-  margin-right: auto;
-  bottom: 0;
-  border-radius: 10px;
-
-}
-
-#menuFooter img {
-  height: 30px;
-}
-
-.counter {
-  position: relative;
-  border-radius: 50%;
-  color: #000;
-  background: rgb(255, 255, 255);
-  height: 30px;
-  width: 30px;
-  vertical-align: bottom;
-  text-align: center;
-
-}
-
-.counter span {
-  position: absolute;
-  top: 20%;
-  left: 36%;
-
-}
-
-#menuFooter div {
-  display: block;
-  float: left;
-  margin-right: 10px;
-}
-
-#menuFooter :last-child {
-
-  margin-right: 0px;
-}
-
-#menuFooter div a {
-  display: flex;
-
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c9c9c9+0,f6f6f6+2,c4c5c7+98,757577+100;Custom+3 */
-  padding: 10px 10px 10px 10px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  background: #303030;
-}
-
-#menuFooter div a p {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 7px;
-  font-size: 15px;
-
-}
 
 
 

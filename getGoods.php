@@ -33,9 +33,32 @@ if($_GET['id']) {
       $basket_img = "img/cart.png";
 
       $img_id = 'img'.$item['id'];
+      $discount_obj = "";
+
+      
+    if($item["discount"] != 0){
+      $discount_obj = '<img src="img/lower_cost.svg" alt="">
+            <div class="discount_value"><span>-'.$item["discount"].'%</span></div>';
+    }else
+     $discount_obj = '';
+
+     $cost_obj = '';
+     if($item["discount"] != 0){
+       $dis_cost =  $item['cost']/100 * $item['discount'];
+        $cost_with_dis =$item['cost'] - $dis_cost;
+       $cost_obj = '<div class="last_price_p"> <span style="font-size: 20px;"><strike>'.price_format_int($item['cost']).'</strike>
+                <sup>'.price_format_frac($item['cost']).'</sup></span>
+                <div class="dis_cost_p"><span>-'.$dis_cost.'</span></div>
+              </div>
+              |&nbsp
+              <span>'.price_format_int($cost_with_dis).'<sup>.'. price_format_frac($cost_with_dis).'</sup></span>';
+     }else{
+       $cost_obj= ' <span>'.price_format_int($item['cost']).'<sup>.'.price_format_frac($property['cost']).'</sup></span>';
+     }
+
   printf('<div class="col">
-    <div style="height: 50px;">
-      <img class="discount" src="img/cred.svg" alt="">
+    <div class="discount_p">
+     %s
     </div>
 
     <div style="height: 300px; display: flex;">
@@ -51,8 +74,8 @@ if($_GET['id']) {
       <img src="img/racr12.png" alt="">
     </div>
     <div class="price_menu">
-      <div class="cost">
-        %s<sup>.00</sup>
+      <div class="cost_block">
+        %s
       </div>
       <div class="buy">
         <div style="display: flex;height: 78px;">
@@ -61,7 +84,7 @@ if($_GET['id']) {
       </div>
       <div class="to_basket">
         <div style="display: flex;height: 78px;">
-          <a onclick = "%s" href="#"><img id = "%s" src="%s" alt=""></a>
+          <a onclick = "%s" href="#"><img class = "%s" src="%s" alt=""></a>
         </div>
       </div>
     </div>
@@ -70,7 +93,7 @@ if($_GET['id']) {
       <a class="rightButton" href="#"><img src="img/heartgreay.svg" alt=""></a>
 
     </div>
-  </div>',$item['id'],$item['id_typetech'],$img,$item['name'],$item['cost'],$event,$img_id,$basket_img);
+  </div>',$discount_obj,$item['id'],$item['id_typetech'],$img,$item['name'],$cost_obj,$event,$img_id,$basket_img);
   }
   exit();
   

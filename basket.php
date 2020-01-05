@@ -1,5 +1,6 @@
 <?php
 session_start();
+//$_SESSION['user'] = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +31,7 @@ session_start();
           <hr>
 
           <?php
-              if(isset($_SESSION['basket'])){
+              if(count($_SESSION['basket'])!=0){
           ?>
           <table class="basket_table">
             <tr>
@@ -42,7 +43,9 @@ session_start();
             <tr>
               <?php
               //var_dump($_SESSION['basket']);
+              $count = 0;  
                 foreach($_SESSION['basket'] as $data):
+                  
               ?>
             <tr class="TEST2">
               <td width=70px>
@@ -55,7 +58,7 @@ session_start();
                   onclick="delete_from_b(<?php echo $data['id'] ?>,<?php echo $data['id_type'] ?>)">Удалить из корзины
                 </div>
               </td>
-              <td class="TEST3"> <span class="costt"><?php echo($data['cost']);?></span> </td>
+              <td class="TEST3"> <span class="costt" name = "<?php echo $count; ?>"><?php echo($data['cost']);?></span> </td>
               <td class="TEST1">
                 <div class="counter clearfix" name="kok">
                   <div class="count_minus"><img src="img/minus.svg" name="kok" alt=""></div>
@@ -73,12 +76,15 @@ session_start();
               ?></span></td>
             </tr>
             <?php
-              
+              $count++;
               endforeach;
             ?>
           </table>
           <div class="bottom_menu">
-            <input type = "submit" class="order_btn" value = "Оформить заказ"></input>
+            <div class="order_btn" onclick = "order()">
+              Оформить заказ
+            </div>
+
             <div class="and_that"><?php
             echo $summ_all;
             ?></div>
@@ -86,9 +92,18 @@ session_start();
 
           <?php
               }else{
-              
           ?>
-          <div>ПУСТО</div>
+          <div class = "empty_basket">
+            <img src="img/emptybasket.png" alt="">
+            <h3>В вашей корзине  еще нет товаров...</h3>
+            <h3>Выберите нужный Вам товар из каталога Интернет-магазина.</h3>
+            <a href = "index.php">
+            <div class="open_content_btn" >
+              Главная страница
+            </div>  
+            </a>
+            
+        </div>
           <?php
               }
               
@@ -102,12 +117,15 @@ session_start();
       </div>
     </div>
   </section>
+   <?php
+        include_once "footer.html"
+    ?>
   <script>
     $(document).on('click', '.count_plus', (a) => {
       let obj_count = a.target.parentElement.parentElement.childNodes[3];
       let obj_price = a.target.parentElement.parentElement.parentElement.parentElement.childNodes[5].childNodes[1];
       let obj_summ = a.target.parentElement.parentElement.parentElement.parentElement.lastElementChild.childNodes[
-      0];
+        0];
       chenge_count(1, obj_count, obj_price, obj_summ);
     });
     $(document).on('click', '.count_minus', (a) => {
@@ -116,13 +134,16 @@ session_start();
       let obj_count = a.target.parentElement.parentElement.childNodes[3];
       let obj_price = a.target.parentElement.parentElement.parentElement.parentElement.childNodes[5].childNodes[1];
       let obj_summ = a.target.parentElement.parentElement.parentElement.parentElement.lastElementChild.childNodes[
-      0];
+        0];
       chenge_count(-1, obj_count, obj_price, obj_summ);
     });
 
     function chenge_count(value, target, obj_price, obj_summ) {
       // let obj_count = $('.count'); 
 
+      console.log(obj_price.getAttribute('name'));
+
+      let id_row = obj_price.getAttribute('name');
       let count = Number(target.innerHTML);
       let max = target.getAttribute('name');
       //console.log(max);
@@ -130,16 +151,28 @@ session_start();
         let cost = Number(obj_price.innerHTML);
         let and_that_o = $('.and_that');
         let and_that = Number(and_that_o.html());
-        if(count> count + value){
+        if (count > count + value) {
           and_that -= cost;
-        }else
+        } else
           and_that += cost;
         and_that_o.html(and_that);
 
         count += value;
         target.innerHTML = count;
-        
+
         obj_summ.innerHTML = count * cost;
+
+        $.ajax({
+        url: 'basket_operation.php',
+        data: {
+          operation: 'update',
+          id_row: id_row,
+          count_items: count
+        }, 
+        type: 'get',
+        success: function (html) {alert(html)}
+      });
+
       }
     }
 
@@ -152,8 +185,7 @@ session_start();
           id_type: id_type
         }, //sort_id=pricea
         type: 'get',
-          success: function (html) {
-        }
+        success: function (html) {}
       });
       location.reload()
     }
@@ -170,6 +202,23 @@ session_start();
         }
       });
       location.reload()
+    }
+
+    function order(){
+      $.ajax({
+        url: 'basket_operation.php',
+        data: {
+          operation: 'order'
+        }, //sort_id=pricea
+        type: 'get',
+        success: function (html) {
+          alert(html)
+          if(html == 0)
+            location.reload();
+            else open_sign_menu();
+        }
+      });
+      
     }
   </script>
 </body>

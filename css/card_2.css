@@ -1,12 +1,43 @@
 .col{
     height: 565px;
     width: 380px;
+    /* 380 */
     background-color: rgb(255, 255, 255);
     float: left;
     margin: 1px;
     margin-bottom: 15px;
     border-radius: 5px;
+
+     /* display: flex;
+     flex-direction: column;
+     text-align: center; */
+     /* width: 80%; */
     
+}
+.discount_p {
+  height: 53px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.discount_p .discount_value {
+  background: #82aa3a;
+  height: 80%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.discount_p .discount_value {
+  color: #ffffff;
+  margin: auto;
+}
+
+.discount_p img {
+  height: 47px;
+  margin: 5px;
 }
 .col:hover{
     /* background: rgb(12, 11, 6); */
@@ -14,15 +45,23 @@
     
 }
 .col .midCenter img{
-    height: 200px;
+    /* max-height: 180px; */
+    /* max-width: 300px; */
+
+     height: 100%;
+     width: auto;
+     position: relative;
 }
+
 .col .midCenter{
     height: 200px;
     text-align: center;
     margin: auto;
     padding-bottom: 25px;
     color: #3d3d3d;
-
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   
 }
 .midCenter h4{
@@ -54,19 +93,29 @@
     height: 80px;
     display: flex;
 }
-.cost{
-    width: 60%;
-    background: #3d3d3d;
-    padding: 10px;
-    font-size: 25px;
+.price_menu .cost_block {
+  width: 60%;
+  background: #3d3d3d;
+  display: flex;
+  align-items: center;
+   font-size: 25px;
+   color: rgb(255, 255, 255);
+   padding: 10px;
+   padding-left: 15px;
 }
-.cost{
-    width: 60%;
-    background: #3d3d3d;
-    padding: 10px;
-    padding-left: 15px;
-    font-size: 30px;
-    color: azure;
+
+.price_menu .cost_block .last_price_p {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+}
+
+.price_menu .cost_block .last_price_p .dis_cost_p {
+  font-size: 15px;
+  background: #82aa3a;
+  padding: 2px;
+  text-align: center;
+
 }
 .cost sup{
    

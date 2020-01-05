@@ -27,8 +27,9 @@ formIN.onsubmit = function (e) {
       if (mes == 1) {
 
         close_sign_menu();
-        let inp_menu = $('#input_menu');
-        inp_menu.html(login);
+        // let inp_menu = $('#input_menu');
+        // inp_menu.html(login);
+        location.reload()
       } else
         $('#sign_in_logs').html('Не верный логин или пароль')
     }
